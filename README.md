@@ -46,6 +46,8 @@ BOW_transferlearning
 2. [FastText_artical](https://arxiv.org/pdf/1607.01759.pdf)
 3. [FastText_web](https://fasttext.cc/)
 4. [ULMFIT](http://nlp.fast.ai/classification/2018/05/15/introducting-ulmfit.html)
+5. [LSTM Language Models](https://arxiv.org/pdf/1708.02182.pdf)
+6. [ULMFIT_tutorial](https://www.analyticsvidhya.com/blog/2018/11/tutorial-text-classification-ulmfit-fastai-library/)
 
 ## Install
 
@@ -113,12 +115,3 @@ $ sudo apt-get install python3.6-dev
 ```python
 python -m ulmfit lm --dataset-path data/wiki/wikitext-103 --bidir=False --qrnn=False --tokenizer=vf --name 'bs40' --bs=40 --cuda-id=0  -  train 20 --drop-mult=0.9
 ```
-
-# Skal slettets
-## Links
-
-https://www.analyticsvidhya.com/blog/2018/11/tutorial-text-classification-ulmfit-fastai-library/  
-https://github.com/google-research/bert/issues/160  
-https://github.com/tchambon/deepfrench  
-https://www.kdnuggets.com/2017/11/building-wikipedia-text-corpus-nlp.html
-https://linguatools.org/tools/corpora/wikipedia-monolingual-corpora/
