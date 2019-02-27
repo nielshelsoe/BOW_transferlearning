@@ -13442,11 +13442,38 @@ linkin = <a href="https://www.linkedin.com/in/nielshelsoe/">https://www.linkedin
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Data-(thansk-to-Prayson-Wilfred-Daniel)">Data (thansk to Prayson Wilfred Daniel)<a class="anchor-link" href="#Data-(thansk-to-Prayson-Wilfred-Daniel)">&#182;</a></h1><ul>
 <li>trustpilot data</li>
+<li>254464 (after making a equal distrubiton)</li>
 <li>task: build a sentiment classefier </li>
 </ul>
 
 </div>
 </div>
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># %load src/preprocessing/text_pre.py</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="k">def</span> <span class="nf">clean_text</span> <span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">row_name</span><span class="p">):</span>
+    <span class="c1">#lower all text</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1">#remove all numbers</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;0123456789&#39;</span><span class="p">)))</span>
+    <span class="c1">#remove all special chareters</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[\W]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="c1">#make translation tabel where punctuation is removed and apply it to the text</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">})</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">row_name</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13555,8 +13582,7 @@ bestilte tøj på nettet og fik pakken hurtigere end ventet og kunne endda følg
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">load</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">load</span>
 <span class="n">model_bow</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/models/bow_model.pkl&#39;</span><span class="p">)</span>
 <span class="n">get_metrics</span><span class="p">(</span><span class="n">model_bow</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
@@ -13608,7 +13634,7 @@ Wall time: 14.8 s
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Some-issues">Some issues<a class="anchor-link" href="#Some-issues">&#182;</a></h2><ul>
 <li>Ngrams get us some of the way</li>
-<li>stil just one vector per sentens (document)</li>
+<li>Stil just one vector per sentens (document)</li>
 </ul>
 
 </div>
@@ -13628,7 +13654,7 @@ Wall time: 14.8 s
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">IFrame</span>
@@ -13645,7 +13671,7 @@ Wall time: 14.8 s
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -13670,7 +13696,7 @@ Wall time: 14.8 s
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Lets train one and have a look of how good it is finding word similarity</p>
+<p>Lets train one and have a look of how good it is at finding word similarity</p>
 
 </div>
 </div>
@@ -13724,7 +13750,12 @@ Wall time: 14.8 s
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="FastText">FastText<a class="anchor-link" href="#FastText">&#182;</a></h2><ul>
-<li>Framework with word2vecs cbow implementet </li>
+<li>Framework with word2vecs cbow implementet <ul>
+<li>ngrams (both on words and characters)</li>
+<li>size (size of the context window)</li>
+<li>dim (size of the vector)</li>
+</ul>
+</li>
 <li>Each word is represented as a bag of character n-grams<ul>
 <li>ngrams = 3</li>
 <li>where = &lt;wh, whe, her, ere, re&gt;</li>
@@ -13788,20 +13819,128 @@ Wall time: 4min 22s
 </div>
 </div>
 
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Transferlearning">Transferlearning<a class="anchor-link" href="#Transferlearning">&#182;</a></h1><ul>
+<li>lets take somthing that we have learn somwhere else and apply it to a new domain</li>
+<li>why this?<ul>
+<li>we do not always have a ton of data</li>
+<li>The model do not need to learn from sratch</li>
+<li>Thus we save time</li>
+<li>We make use of the models there are bulid by very talented people</li>
+<li>the apporach have proven it self in computer vission</li>
+</ul>
+</li>
+</ul>
+
 </div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Universal-Language-Model-Fine-tuning-for-Text-Classification-(ULMFiT)">Universal Language Model Fine-tuning for Text Classification (ULMFiT)<a class="anchor-link" href="#Universal-Language-Model-Fine-tuning-for-Text-Classification-(ULMFiT)">&#182;</a></h2><ul>
+<li>fast.ai</li>
+<li>15 may 2018</li>
+<li>Make use of Language model apporach<ul>
+<li>A model which predict the next word in a sentence<ul>
+<li>e.g. "jeg elsker pågen" -&gt; "gifler" </li>
+</ul>
+</li>
+<li>have high understading of semantic<ul>
+<li>eg. " så det der kommer ..." != "jeg så en flot sol opgang"</li>
+</ul>
+</li>
+<li>have a high understading of grammatic</li>
+</ul>
+</li>
+<li>Data = wikipedia</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">IFrame</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;pictures/ulmfit.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div></div></section></section>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="600"
+            height="200"
+            src="pictures/ulmfit.png"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Status-on-a-danish-ulmfit-model">Status on a danish ulmfit model<a class="anchor-link" href="#Status-on-a-danish-ulmfit-model">&#182;</a></h2><ul>
+<li>traind for 24 hours on danish wikipidia</li>
+<li>20000 + wikipidia articels </li>
+<li>60000 + tokens</li>
+<li>has for the now a ROC on 80% (train=2400/test=1600)</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lets have a look</p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="KISS">KISS<a class="anchor-link" href="#KISS">&#182;</a></h1><p><strong><em>Keep It Simpel and Stupid</em></strong></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Questions?</p>
+<p>Thanks for your time.</p>
+
+</div>
+</div>
+</div></section></section>
 </div>
 </div>
 
