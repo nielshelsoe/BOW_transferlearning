@@ -1,0 +1,4 @@
+data/
+*.ipynb_checkpoints
+*.vscode
+ulmfit/ulmfit-multilingual/data/
