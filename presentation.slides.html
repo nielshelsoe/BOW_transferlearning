@@ -13252,11 +13252,24 @@ linkedin = <a href="https://www.linkedin.com/in/nielshelsoe/">https://www.linked
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Purpose">Purpose<a class="anchor-link" href="#Purpose">&#182;</a></h1><ul>
+<li>3 models for NLP</li>
+<li>compare</li>
+<li>every model have a tutorial </li>
+<li>IT IS ALL ON <strong>GIT HUB</strong></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Agenda">Agenda<a class="anchor-link" href="#Agenda">&#182;</a></h1><ol>
 <li>Introduction</li>
-<li>BoW (Bag Of Words)</li>
-<li>Word embeddings</li>
-<li>Transferlearning</li>
+<li>Classifier with BoW (Bag Of Words)</li>
+<li>Classifier with Word embeddings</li>
+<li>Classifier with Transferlearning</li>
 </ol>
 
 </div>
@@ -13274,11 +13287,11 @@ linkedin = <a href="https://www.linkedin.com/in/nielshelsoe/">https://www.linked
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><ul>
-<li>Who am i?<ul>
+<li>Who am I?<ul>
 <li>Name = Niels</li>
 <li>Age = 29</li>
 <li>Education = cand. it</li>
-<li>have code in python for 2 years time</li>
+<li>have coded in python for 2 years time</li>
 <li>Love NLP</li>
 <li>Favorite guilty pleasure = paagen gifler</li>
 </ul>
@@ -13292,6 +13305,7 @@ linkedin = <a href="https://www.linkedin.com/in/nielshelsoe/">https://www.linked
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="The-Danish-Business-Authority">The Danish Business Authority<a class="anchor-link" href="#The-Danish-Business-Authority">&#182;</a></h1><ul>
+<li>Government agency</li>
 <li>550 people</li>
 <li>Goal: The best conditions and framework for Danish companies</li>
 <li>Three locations: Copenhagen, Silkeborg, Nykøbing Falster</li>
@@ -13304,7 +13318,8 @@ linkedin = <a href="https://www.linkedin.com/in/nielshelsoe/">https://www.linked
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Data-science-in-Danish-Business-Authority">Data science in Danish Business Authority<a class="anchor-link" href="#Data-science-in-Danish-Business-Authority">&#182;</a></h2><ul>
-<li>Data-Science team of 5 (WE ARE HIRING!)n</li>
+<li>Data-Science team of 5 (WE ARE HIRING!)</li>
+<li>Use Data science </li>
 <li>Profiles:<ul>
 <li>fine arts</li>
 <li>economics</li>
@@ -13552,7 +13567,7 @@ bestilte tøj på nettet og fik pakken hurtigere end ventet og kunne endda følg
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">corpus</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Pydatacopenhagen is the best place to be tonight, yes tonight&#39;</span><span class="p">,</span>
-<span class="s1">&#39;At Pydatacopenhagen every one is welcome&#39;</span><span class="p">]</span>
+<span class="s1">&#39;At Pydatacopenhagen everyone is welcome&#39;</span><span class="p">]</span>
 <span class="kn">from</span> <span class="nn">nltk</span> <span class="k">import</span> <span class="n">ngrams</span>
 <span class="n">grams</span> <span class="o">=</span> <span class="n">ngrams</span><span class="p">(</span><span class="n">corpus</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">gram</span> <span class="ow">in</span> <span class="n">grams</span><span class="p">:</span>
@@ -13783,7 +13798,7 @@ Wall time: 14.8 s
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="FastText">FastText<a class="anchor-link" href="#FastText">&#182;</a></h2><ul>
-<li>Framework with word2vecs cbow implementet <ul>
+<li>Framework with word2vecs cbow implemented <ul>
 <li>ngrams (both on words and characters)</li>
 <li>size (size of the context window)</li>
 <li>dim (size of the vector)</li>
@@ -13945,6 +13960,27 @@ Wall time: 4min 22s
 <li>60000 + tokens</li>
 </ul>
 <p>Let's take a look at the code!</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="models:">models:<a class="anchor-link" href="#models:">&#182;</a></h1><ul>
+<li>BOW<ul>
+<li>90% roc auc</li>
+</ul>
+</li>
+<li>Word2vec<ul>
+<li>94,5% roc auc</li>
+</ul>
+</li>
+<li>Transerlearning<ul>
+<li>81 % roc auc</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>

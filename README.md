@@ -4,7 +4,7 @@ Git repository for Niels Helsø talk held at pydatacopenhagen 28/2-2019
 
 **OBS**   
 If you want to run any turtorial in this repo you have to download data.  
-Se data point  
+Se data  
 **OBS**
 
 ## Folders
@@ -15,8 +15,6 @@ Se data point
   * data (scripts handling data)
   * model (scripts building and training models)
   * preprocessing (scripts related to preprocessing data)
-* ulmfit (all scripts for building ULMFIT LM Models)
-  * clone from this [git repo](https://github.com/n-waves/ulmfit-multilingual)
 
 ## Notebooks
 
@@ -42,6 +40,12 @@ BOW_transferlearning
   -data  
      |  
      -sentiment_data  
+  - src
+     |
+     - model
+     - preprocessing
+     - etc
+  - pictures 
 ```
 
 
