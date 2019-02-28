@@ -2,10 +2,10 @@
 
 Git repository for Niels Helsø talk held at pydatacopenhagen 28/2-2019   
 
-**OBS**   
-If you want to run any turtorial in this repo you have to download data.  
+**Attention**  
+If you want to run any tutorial in this repo you have to download data.  
 Se data  
-**OBS**
+**Attention**
 
 ## Folders
 
@@ -52,7 +52,7 @@ BOW_transferlearning
 ## Articles and websites
 
 1. [Word2Vec](https://arxiv.org/pdf/1301.3781.pdf)
-2. [FastText_artical](https://arxiv.org/pdf/1607.01759.pdf)
+2. [FastText_article](https://arxiv.org/pdf/1607.01759.pdf)
 3. [FastText_web](https://fasttext.cc/)
 4. [ULMFIT](http://nlp.fast.ai/classification/2018/05/15/introducting-ulmfit.html)
 5. [LSTM Language Models](https://arxiv.org/pdf/1708.02182.pdf)
@@ -100,6 +100,7 @@ python src/test_venv.py
 
 6. If this run perfectly you should be apple to begin your journey.  
 Now let's get some data and have fun!
+Please proceed to one of the following tutorials in the github repo. 
 
 ### Build ulmfit
 
