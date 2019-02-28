@@ -1,6 +1,11 @@
 # BOW_transferlearning
 
-Git repository for Niels Helsø talk held at pydatacopenhagen 28/2-2019  
+Git repository for Niels Helsø talk held at pydatacopenhagen 28/2-2019   
+
+**OBS**   
+If you want to run any turtorial in this repo you have to download data.  
+Se data point  
+**OBS**
 
 ## Folders
 
@@ -93,25 +98,6 @@ python src/test_venv.py
 Now let's get some data and have fun!
 
 ### Build ulmfit
-1. run the following:
-```bash
-$ sudo apt-get install python3.6-dev
-```
-2. Install dev version of [fast.ai](https://github.com/fastai/fastai#developer-install) by doing this:
-```bash
->>> cd ulmfit/fastai
->>> tools/run_after_git_clone
->>> pip install .
-```
-4. cd into ulmfit-multilingual
-```bash
->>> cd ulmfit/ulmfit-multilingual
-```
-5. run prepare_wiki.sh to create wiki data for lm model
-```Bash
-./prepare_wiki.sh
-```
-6. run  the following to build lm model (Please note: this may take a while, it took 24 hours on a Tesla P40 GPU)
-```python
-python -m ulmfit lm --dataset-path data/wiki/wikitext-103 --bidir=False --qrnn=False --tokenizer=vf --name 'bs40' --bs=40 --cuda-id=0  -  train 20 --drop-mult=0.9
-```
+
+To run ulmfit follow this [tutorial](https://www.analyticsvidhya.com/blog/2018/11/tutorial-text-classification-ulmfit-fastai-library/) for english ulmfit  
+I will publish code and weight for danish in a near furture.  
