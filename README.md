@@ -1,9 +1,30 @@
 # BOW_transferlearning
 
-Git repository for Niels Helsø talk held at pydatacopenhagen 28/2-2019   
+## Overview
+This repo contains code for Niels private fun with NLP
+
+## Ollama (LLM on your CPU)
+The folder Ollame contains scripts to play around with small llms.  
+For now there is only a script for chat with a promt or with a document.
+
+**Get Started**
+ - To run this you need to install [ollama](https://ollama.ai/)  
+ - Install [poetry](https://python-poetry.org/) and run poetry init
+   - **HINT** - to have poetry to greate the .venv in the folder run the following command: `poetry config virtualenvs.in-project true`
+ - Now run `llama run <llm model name>`
+   - **Hint** i have tested `mistral` but other perfer `llama2-uncensored`
+
+You should be ready to go!
+
+**Files**
+- ollama/chat_promt.py - for chat in your terminal (llm used i defind of what model you have downloaded with ollama)
+- ollama/chat_document.py - put docs (only pdfs right know) in ollama/source_documents and chat with them
+   - **Hint** very slow on cpu but fast on gpu
+- ollama/pdf_loader.py - to load pdfs for chat_document
+  
 
 **Attention**  
-If you want to run any tutorial in this repo you have to download data.  
+If you want to run any code in this repo you have to download data.  
 Se data  
 **Attention**
 
@@ -106,3 +127,6 @@ Please proceed to one of the following tutorials in the github repo.
 
 To run ulmfit follow this [tutorial](https://www.analyticsvidhya.com/blog/2018/11/tutorial-text-classification-ulmfit-fastai-library/) for english ulmfit  
 I will publish code and weight for danish in a near furture.  
+
+
+ 

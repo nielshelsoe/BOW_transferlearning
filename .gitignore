@@ -1,4 +1,15 @@
-data/
-*.ipynb_checkpoints
+# IDE
 *.vscode
+
+# Python
+.venv
+**/__pycache__
+*.ipynb_checkpoints
+
+# NLP
 ulmfit/
+db
+data/
+
+# File types
+**/*.pdf
