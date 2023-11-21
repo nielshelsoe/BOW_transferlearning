@@ -21,6 +21,8 @@ pandoc = "^2.3"
 pypandoc = "^1.11"
 tqdm = "^4.65.0"
 sentence-transformers = "^2.2.2"
+black = "^23.11.0"
+ruff = "^0.1.6"
 
 
 [build-system]
