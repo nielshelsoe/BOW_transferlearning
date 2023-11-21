@@ -15,10 +15,10 @@ from langchain.docstore.document import Document
 from constants import CHROMA_SETTINGS
 
 
-# Load environment variables
-persist_directory = os.environ.get('PERSIST_DIRECTORY', 'db')
-source_directory = os.environ.get('SOURCE_DIRECTORY', 'ollama/source_documents')
-embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME', 'all-MiniLM-L6-v2')
+# Load environment variables
+persist_directory = os.environ.get("PERSIST_DIRECTORY", "db")
+source_directory = os.environ.get("SOURCE_DIRECTORY", "ollama/source_documents")
+embeddings_model_name = os.environ.get("EMBEDDINGS_MODEL_NAME", "all-MiniLM-L6-v2")
 chunk_size = 500
 chunk_overlap = 50
 
@@ -38,6 +38,7 @@ def load_single_document(file_path: str) -> List[Document]:
 
     raise ValueError(f"Unsupported file extension '{ext}'")
 
+
 def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Document]:
     """
     Loads all documents from the source documents directory, ignoring specified files
@@ -47,16 +48,23 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
         all_files.extend(
             glob.glob(os.path.join(source_dir, f"**/*{ext}"), recursive=True)
         )
-    filtered_files = [file_path for file_path in all_files if file_path not in ignored_files]
+    filtered_files = [
+        file_path for file_path in all_files if file_path not in ignored_files
+    ]
 
     with Pool(processes=os.cpu_count()) as pool:
         results = []
-        with tqdm(total=len(filtered_files), desc='Loading new documents', ncols=80) as pbar:
-            for i, docs in enumerate(pool.imap_unordered(load_single_document, filtered_files)):
+        with tqdm(
+            total=len(filtered_files), desc="Loading new documents", ncols=80
+        ) as pbar:
+            for i, docs in enumerate(
+                pool.imap_unordered(load_single_document, filtered_files)
+            ):
                 results.extend(docs)
                 pbar.update()
 
     return results
+
 
 def process_documents(ignored_files: List[str] = []) -> List[Document]:
     """
@@ -68,23 +76,33 @@ def process_documents(ignored_files: List[str] = []) -> List[Document]:
         print("No new documents to load")
         exit(0)
     print(f"Loaded {len(documents)} new documents from {source_directory}")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size, chunk_overlap=chunk_overlap
+    )
     texts = text_splitter.split_documents(documents)
     print(f"Split into {len(texts)} chunks of text (max. {chunk_size} tokens each)")
     return texts
+
 
 def does_vectorstore_exist(persist_directory: str) -> bool:
     """
     Checks if vectorstore exists
     """
-    if os.path.exists(os.path.join(persist_directory, 'index')):
-        if os.path.exists(os.path.join(persist_directory, 'chroma-collections.parquet')) and os.path.exists(os.path.join(persist_directory, 'chroma-embeddings.parquet')):
-            list_index_files = glob.glob(os.path.join(persist_directory, 'index/*.bin'))
-            list_index_files += glob.glob(os.path.join(persist_directory, 'index/*.pkl'))
+    if os.path.exists(os.path.join(persist_directory, "index")):
+        if os.path.exists(
+            os.path.join(persist_directory, "chroma-collections.parquet")
+        ) and os.path.exists(
+            os.path.join(persist_directory, "chroma-embeddings.parquet")
+        ):
+            list_index_files = glob.glob(os.path.join(persist_directory, "index/*.bin"))
+            list_index_files += glob.glob(
+                os.path.join(persist_directory, "index/*.pkl")
+            )
             # At least 3 documents are needed in a working vectorstore
             if len(list_index_files) > 3:
                 return True
     return False
+
 
 def main():
     # Create embeddings
@@ -93,9 +111,15 @@ def main():
     if does_vectorstore_exist(persist_directory):
         # Update and store locally vectorstore
         print(f"Appending to existing vectorstore at {persist_directory}")
-        db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, client_settings=CHROMA_SETTINGS)
+        db = Chroma(
+            persist_directory=persist_directory,
+            embedding_function=embeddings,
+            client_settings=CHROMA_SETTINGS,
+        )
         collection = db.get()
-        texts = process_documents([metadata['source'] for metadata in collection['metadatas']])
+        texts = process_documents(
+            [metadata["source"] for metadata in collection["metadatas"]]
+        )
         print(f"Creating embeddings. May take some minutes...")
         db.add_documents(texts)
     else:
@@ -103,7 +127,9 @@ def main():
         print("Creating new vectorstore")
         texts = process_documents()
         print(f"Creating embeddings. May take some minutes...")
-        db = Chroma.from_documents(texts, embeddings, persist_directory=persist_directory)
+        db = Chroma.from_documents(
+            texts, embeddings, persist_directory=persist_directory
+        )
     db.persist()
     db = None
 
