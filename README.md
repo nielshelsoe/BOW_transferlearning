@@ -18,9 +18,11 @@ For now there is only a script for chat with a promt or with a document.
 You should be ready to go!
 
 **Files**
-- ollama/chat_promt.py - for chat in your terminal (llm used i defind of what model you have downloaded with ollama)
-- ollama/chat_document.py - put docs (only pdfs right know) in ollama/source_documents and chat with them
-   - **Hint** very slow on cpu but fast on gpu
+- ollama/chat_promt.py 
+  - for chat in your terminal (llm used i defind of what model you have downloaded with ollama)
+- ollama/chat_document.py 
+  - put docs (only pdfs right know) in ollama/source_documents and chat with them
+  - **Hint** very slow on cpu but fast on gpu
 - ollama/pdf_loader.py - to load pdfs for chat_document
   
 
