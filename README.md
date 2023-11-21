@@ -6,6 +6,7 @@ This repo contains code for Niels private fun with NLP
 ## Ollama (LLM on your CPU)
 The folder Ollame contains scripts to play around with small llms.  
 For now there is only a script for chat with a promt or with a document.
+*Note* that all code his is inspired by all the good pople creatting [exsample](https://github.com/jmorganca/ollama/tree/main/examples) on ollam repo
 
 **Get Started**
  - To run this you need to install [ollama](https://ollama.ai/)  
