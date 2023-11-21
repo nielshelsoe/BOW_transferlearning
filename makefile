@@ -6,3 +6,5 @@ run-ollama-serve:
 RAG-load-pdf:
 	python ollama/pdf_loader.py
 
+
+
